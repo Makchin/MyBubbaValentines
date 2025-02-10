@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>About Us</title>
+    <style>
+      body {
+        margin: 0;
+        overflow: hidden; /* Prevents scrollbars from appearing */
+      }
+
+      #background {
+        background: url('Flower.png') no-repeat center center fixed;
+        background-size: cover;
+        height: 100vh;
+        width: 100vw;
+        transform-origin: center center;
+        transition: transform 0.2s ease;
+      }
+
+      a {
+        color: #c;
+        font-size: 30px;
+        text-decoration: none;
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        z-index: 10; /* Ensures the link stays on top of the background */
+      }
+    </style>
+  </head>
+  
+  <body>
+    <a href="index.html">&#60; BACK</a>
+
+    <div id="background"></div>
+
+    <script>
+      let zoomLevel = 1;
+      const background = document.getElementById('background');
+
+      // Function to handle zooming
+      function zoom(event) {
+        event.preventDefault();
+        
+        // Zoom in or out
+        zoomLevel += event.deltaY * -0.001;
+
+        // Limit zoom levels between 0.5x and 3x
+        zoomLevel = Math.min(Math.max(0.5, zoomLevel), 3);
+
+        // Apply the zoom transformation
+        background.style.transform = `scale(${zoomLevel})`;
+      }
+
+      // Add event listener for mouse wheel scroll
+      window.addEventListener('wheel', zoom);
+    </script>
+  </body>
+</html>
